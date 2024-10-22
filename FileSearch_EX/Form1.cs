@@ -27,7 +27,7 @@ namespace FileSearch_EX
             }
         }
 
-        // 파일 검색 및 내용 확인 메서드
+        // 파일 검색 및 내용 확인
         private async void button2_Click(object sender, EventArgs e)
         {
             button2.Enabled = false;
@@ -42,7 +42,6 @@ namespace FileSearch_EX
                 button2.Enabled = true;
                 return;
             }
-            // 비동기 작업으로 파일 검색 수행
             await Task.Run(() =>
             {
                 var files = Directory.GetFiles(searchDirectory, "*.txt", SearchOption.AllDirectories).ToList();
