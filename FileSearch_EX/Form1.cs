@@ -97,17 +97,21 @@ namespace FileSearch_EX
                 button2.Enabled = true;
             });
         }
+        
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            Process ExternalProcess = new Process();
-            // 실행파일 경로
-            ExternalProcess.StartInfo.FileName = listBox1.SelectedItem.ToString();
-            // 실행시킬 파일 크기
-            ExternalProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            // Process 시작
-            ExternalProcess.Start();
-            ExternalProcess.WaitForExit();
+            string selectedFile = listBox1.SelectedItem?.ToString();  // 선택된 파일 경로 가져오기
+
+            if (!string.IsNullOrWhiteSpace(selectedFile) && File.Exists(selectedFile))
+            {
+                Form2 form2 = new Form2(selectedFile);  // 선택한 파일 경로를 Form2에 전달
+                form2.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("유효한 파일을 선택해 주세요.");
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
